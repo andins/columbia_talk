@@ -8,11 +8,11 @@
 \definecolor{grigio}{rgb}{.8, .8, .8}
 
 \mode<beamer>{%
-	\usetheme{Madrid}
-  %\usecolortheme{beaver}
+	\usetheme{default}
+  \usecolortheme{default}
 }
-\titlegraphic{\includegraphics[width=0.3\textwidth]{LogoUPF_CBC}\hspace{0.5cm}\includegraphics[width=0.3\textwidth]{logo_italian_academy}\hspace{0.5cm}\includegraphics[width=0.3\textwidth]{ctn_columbia}}
-\title[Effective connectivity]{\textbf{Effective connectivity}\\ Some subtitle}
+\titlegraphic{\includegraphics[width=0.3\textwidth]{LogoUPF_CBC}\hspace{0.5cm}\includegraphics[width=0.3\textwidth]{logo_italian_academy}\hspace{0.5cm}\includegraphics[width=0.15\textwidth]{columbia}}
+\title[Effective connectivity]{\textbf{Whole brain effective connectivity from fMRI data}\\ Some subtitle}
 \author{Andrea Insabato}
 \date{November 27th, 2017}
 
@@ -25,47 +25,113 @@
 
 \begin{frame}
 \transdissolve
-\frametitle{The problem}
-Characterization of brain networks underlying ``mental'' states 
-using data science tools
-\pause
+\frametitle{Whole brain connectivity}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+	\begin{itemize}
+			\pause
+		\item Whole brain is divided in ROIs (parcellation)
+			\pause
+		\item Average activity in each ROI
+			\pause
+		\item Connectivity between ROIs
+	\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics<1->[width=0.5\columnwidth,valign=t]{brain_connectivity}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Functional Connectivity (FC)}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics<1->[width=0.5\columnwidth,valign=t]{FC}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{itemize}
+			\pause
+		\item Pearson correlation between ROIs
+			\pause
+		\item Dense 
+			\pause
+		\item Symmetric: no directionality of interactions 
+	\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Effective Connectivity (EC)}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics<1->[width=0.5\columnwidth,valign=t]{EC}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{itemize}
+			\pause
+		\item Network model 
+			\pause
+		\item Sparse 
+			\pause
+		\item Asymmetric: no directionality of interactions 
+	\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Outline}
 \begin{itemize}
-	\item mental 
 		\pause
-	\item brain as a network
+	\item Network model
 		\pause
-	\item data science
+	\item EC based subject and condition identification
+		\pause
+	\item Estimation of model parameters
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \transdissolve
-\frametitle{The problem}
-Example: brain network of Alzheimer desease.
+\frametitle{Network model}
+\begin{itemize}
+		\pause
+	\item Each node is an Ornstein-Uhlenbeck process 
+		\pause
+	\item $dx_i(t) = [-\frac{x_i(t)}{\tau_i} + \sum_{j\ne i} C_{ij} x_j + \eta_i]dt + dB_i;\qquad dB_i\sim\mathcal{N}(0,\sigma_i^2)$ 
+		\pause
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{The problem: example}
+\frametitle<1>{Characterization of whole brain networks underlying ``mental'' states}
+\frametitle<2>{Characterization of whole brain networks underlying watching a movie}
+\frametitle<3>{Characterization of whole brain networks underlying remembering}
+\frametitle<4>{Characterization of whole brain networks underlying calculating}
+\frametitle<5>{Characterization of whole brain networks underlying pathological states (dementia, autism, depression, etc.)}
+\frametitle<6->{Characterization of whole brain networks underlying ``mental'' states}
+\transdissolve
+\begin{itemize}
+	\item<7-> Separate different sources of varibility
+\end{itemize}
 \begin{center}
-\includegraphics<2>[width=0.6\columnwidth]{noise_mixture7}
-\includegraphics<3>[width=0.6\columnwidth]{noise_mixture6}
-\includegraphics<4>[width=0.6\columnwidth]{noise_mixture5}
-\includegraphics<5>[width=0.6\columnwidth]{noise_mixture4}
-\includegraphics<6>[width=0.6\columnwidth]{noise_mixture3}
-\includegraphics<7>[width=0.6\columnwidth]{noise_mixture2}
-\includegraphics<8>[width=0.6\columnwidth]{noise_mixture1}
-\includegraphics<9>[width=0.6\columnwidth]{noise_mixture0}
+	\visible<8->{\includegraphics[width=0.5\columnwidth,valign=b]{subj_cond_idea}}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \transdissolve
-\frametitle{The problem and subproblems}
+\frametitle{Characterization of whole brain networks underlying ``mental'' states}
 \begin{itemize}
-	\item Characterization of brain networks underlying ``mental'' states 
-using data science tools
 \pause
-	\item Separate different sources of varibility/noise
+	\item watching a movie, remembering, calculating, pathological states (dementia, autism, depression, etc.) 
+\pause
+	\item Separate different sources of varibility
 \pause
 	\begin{itemize}
 		\item classify individuals
@@ -77,190 +143,6 @@ using data science tools
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Data}
-\begin{itemize}
-	\item fMRI
-	\item BOLD signal
-\end{itemize}
-\begin{center}
-\includegraphics[width=0.7\columnwidth]{fmri}
-\end{center}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Data}
-\begin{center}
-\includegraphics[width=0.8\columnwidth]{fig1b}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Statistical association: correlation}
-\begin{center}
-\includegraphics<1>[width=0.9\columnwidth]{correlation}
-\includegraphics<2>[width=0.5\columnwidth]{toy_FC}
-\includegraphics<3>[width=0.8\columnwidth]{correlation_xkcd}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{FC}
-\begin{center}
-\includegraphics<1>[width=0.8\columnwidth]{fig1b}
-\includegraphics<2>[width=0.8\columnwidth]{fig1a}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{EC}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{model}
-\transdissolve
-\includegraphics<2>[width=0.65\columnwidth]{fitting}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subjects classification: EC as fingerprint}
-\begin{center}
-\includegraphics<1>[width=0.7\columnwidth]{fingerprint}
-\transdissolve
-\includegraphics<2>[width=0.65\columnwidth]{pipeline}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\transdissolve
-\frametitle{The problem and subproblems}
-\begin{itemize}
-	\item Characterization of brain networks underlying ``mental'' states 
-using data science tools
-	\begin{itemize}
-		\item \alert<2->{classify individuals}
-		\item \color<2>{grigio}{classify conditions} 
-		\item \color<2>{grigio}{extract networks underlying each classification}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subjects classification}
-\begin{center}
-\includegraphics<1>[width=0.9\columnwidth]{class_subj}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{The classifier}
-\begin{center}
-\includegraphics<2>[width=0.6\columnwidth]{regression3}
-\includegraphics<3>[width=0.6\columnwidth]{regression2}
-\includegraphics<4>[width=0.6\columnwidth]{regression1}
-\includegraphics<5>[width=0.6\columnwidth]{regression0}
-\includegraphics<6>[width=0.6\columnwidth]{regression-1}
-\includegraphics<7>[width=0.6\columnwidth]{regression4}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subjects network}
-\begin{center}
-\includegraphics<1>[width=0.8\columnwidth]{subj_varying_links}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Subjects network}
-\begin{center}
-\includegraphics<1>[width=0.8\columnwidth]{subj_net}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Agreement between datasets}
-\begin{center}
-\includegraphics<1>[width=0.9\columnwidth]{avg_ranking_subsystems}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Agreement between datasets}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{subj_H0}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\transdissolve
-\frametitle{The problem and subproblems}
-\begin{itemize}
-	\item Characterization of brain networks underlying ``mental'' states 
-using data science tools
-	\begin{itemize}
-		\item \color<2>{grigio}{classify individuals}
-		\item \alert<2>{classify conditions} 
-		\item \color<2>{grigio}{extract networks underlying each classification}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics[width=0.6\columnwidth]{noise_mixture0}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{subj_cond_idea}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{subj_cond_results}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{subj_cond_matrix}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{cond_H0}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Simultaneous classification: subjects and conditions}
-\begin{center}
-\includegraphics<1>[width=0.7\columnwidth]{fig5}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Summary}
-\begin{itemize}
-	\item Characterization of brain networks underlying ``mental'' states 
-using data science tools
-	\begin{itemize}
-		\item {\color<2->{green}classify individuals}
-		\item {\color<3->{green}classify conditions}
-		\item \color<4->{green}extract networks underlying each classification
-	\end{itemize}
-\item \uncover<5->{Refinements: small samples \uncover<6>{$\rightarrow$ Bayesian inference}}
-\end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{Acknowledgments}
@@ -293,14 +175,6 @@ using data science tools
 \end{column}
 \end{columns}
 \end{frame}
-
-\begin{frame}
-\frametitle{}
-\begin{center}
-\includegraphics<1>[width=0.6\columnwidth]{minion}
-\end{center}
-\end{frame}
-
 
 
 \end{document}
