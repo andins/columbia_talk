@@ -2,6 +2,7 @@
 \usepackage{multimedia}
 \usepackage{color}
 \usepackage[normalem]{ulem}
+\usepackage{adjustbox}
 \graphicspath{{figures/}}
 
 \newcommand{\comment}[1]{}
@@ -118,6 +119,13 @@
 \transdissolve
 \begin{itemize}
 	\item<7-> Separate different sources of varibility
+	\visible<9->{
+	\begin{itemize}
+		\item classify subjects
+		\item classify conditions 
+		\item extract networks underlying each classification
+	\end{itemize}
+	}
 \end{itemize}
 \begin{center}
 	\visible<8->{\includegraphics[width=0.5\columnwidth,valign=b]{subj_cond_idea}}
@@ -126,20 +134,40 @@
 
 \begin{frame}
 \transdissolve
-\frametitle{Characterization of whole brain networks underlying ``mental'' states}
+\frametitle{Datasets}
+	\centering
+\adjustbox{max width=\textwidth}{
+\begin{table}[t!]
+\begin{tabular}{l||l|l|l|l}
+Dataset name	& Acquisition	 & Number of subjects	 & Sessions per subject	 & Session duration \\
+\hline
+\hline
+Dataset A1	& Day2day project				 & 6			 & 40-50		 & 5 minutes \\
+Dataset B	& CoRR						 & 30			 & 10			 & 10 minutes \\
+Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movie	 & 10 minutes \\
+\end{tabular}
+\end{table}
+}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Subjects classification}
 \begin{itemize}
-\pause
-	\item watching a movie, remembering, calculating, pathological states (dementia, autism, depression, etc.) 
-\pause
-	\item Separate different sources of varibility
-\pause
-	\begin{itemize}
-		\item classify individuals
-			\pause
-		\item classify conditions 
-			\pause
-		\item extract networks underlying each classification
-	\end{itemize}
+		\pause
+	\item Finn (Nat. Neuro. 2015): FC of $\sim100$ subjects, 5 sessions per subject, Nearest Neighbor, 54-94\% accuracy   
+		\pause
+	\item Comparison between FC and EC
+		\pause
+	\item Multinomial logistic regression (interpretability of fitted classifier)
+		\pause
+	\item \textbf{Test-retest} dataset: 
+		\pause
+		\begin{itemize}
+			\item accurate assessment of test accuracy 
+		\pause
+			\item impact of training set size
+		\end{itemize}
 \end{itemize}
 \end{frame}
 
