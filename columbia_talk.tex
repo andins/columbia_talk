@@ -157,20 +157,191 @@ Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movi
 		\pause
 	\item Finn (Nat. Neuro. 2015): FC of $\sim100$ subjects, 5 sessions per subject, Nearest Neighbor, 54-94\% accuracy   
 		\pause
+	\item Our approach:
+		\pause
+		\begin{itemize}
 	\item Comparison between FC and EC
 		\pause
 	\item Multinomial logistic regression (interpretability of fitted classifier)
 		\pause
-	\item \textbf{Test-retest} dataset: 
+	\item \textbf{Test-retest} dataset (10-50 sessions per subject): 
 		\pause
 		\begin{itemize}
 			\item accurate assessment of test accuracy 
 		\pause
 			\item impact of training set size
 		\end{itemize}
+		\end{itemize}
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\transdissolve
+\frametitle{Multinomial Logistic Regression (MLR)}
+\begin{itemize}
+	\item $C_k = \sigma(\sum_j^N \beta_{jk} x_j)$
+\pause
+\item allows to estimate the most relevant features for the classification
+	\item Recursive feature elimination: 
+		\begin{itemize}
+			\item recursively remove feature $i = \operatorname*{arg\,min}_j \sum_k \beta_{jk}$
+			\item survival time reflects relevance of each link
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Subjects classification}
+\begin{center}
+\includegraphics[width=0.9\columnwidth,valign=b]{class_subj}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Subjects classification}
+Classification accuracy using subsets of links according to RFE ranking
+\begin{center}
+\includegraphics[width=0.8\columnwidth,valign=b]{subj_varying_links}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Subjects classification}
+\begin{center}
+\includegraphics[width=0.8\columnwidth,valign=b]{subj_net}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Subjects classification}
+Average ranking by subsystem
+\begin{center}
+\includegraphics[width=0.8\columnwidth,valign=b]{avg_ranking_subsystems}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Subjects classification}
+Number of overlapping links is much higher than expected by chance
+\begin{center}
+\includegraphics[width=0.5\columnwidth,valign=b]{subj_H0}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Condition classification}
+resting VS movie viewing
+
+\pause
+Classification accuracy using subsets of links according to RFE ranking
+\begin{center}
+\includegraphics[width=0.8\columnwidth,valign=b]{subj_cond_results}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Condition classification}
+\begin{center}
+\includegraphics[width=0.65\columnwidth,valign=b]{subj_cond_matrix}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Condition classification}
+Number of overlapping links is similar to that expected by chance
+\begin{center}
+\includegraphics[width=0.5\columnwidth,valign=b]{cond_H0}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Condition classification}
+Subjects and conditions networks
+\begin{center}
+\includegraphics[width=0.7\columnwidth,valign=b]{fig5}
+\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Summary (ad interim)}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\centering
+Estimation of parameters in the MOU model
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Estimation of parameters}
+\begin{itemize}
+	\item Lyapunov optimization (Gilson et al. PLoS Comp Biol 2015)
+	\item minimize $V = \sum_{m,n} (\mathbf{Q}_{mn}^0 - \mathbf{\hat{Q}}_{mn}^0)^2 +
+		\sum_{m,n} (\mathbf{Q}_{mn}^{\tau} - \mathbf{\hat{Q}}_{mn}^{\tau})^2$
+\end{itemize}
+		\colortext{red}{Instert fig 2E matt paper}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Bayesian estimation of parameters}
+\begin{itemize}
+		\pause
+	\item Posterior probability of parameters $\rightarrow$ connectivity estimation 
+		\pause
+	\item Regularization $\rightarrow$ better estimation with few timepoints
+		\pause
+	\item Model comparison 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\transdissolve
+\frametitle{Bayesian estimation of parameters}
+\begin{itemize}
+	\item Bayesian MAP estimate with uniform prior ($\equiv$ MLE): Tizio et al. 2017
+	\item $C^* = logm[(\mathbf{Q^{0}})^{-1}\mathbf{Q^1}]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{MAP estimate for large scale networks}
+\begin{center}
+\includegraphics[width=0.7\columnwidth,valign=b]{}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{MAP estimate for small time samples}
+\begin{center}
+\includegraphics[width=0.7\columnwidth,valign=b]{}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Influence of weight values}
+\begin{center}
+\includegraphics[width=0.7\columnwidth,valign=b]{}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{True and predicted weights}
+\begin{center}
+\includegraphics[width=0.7\columnwidth,valign=b]{}
+\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Summary}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{Acknowledgments}
@@ -193,6 +364,9 @@ Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movi
 \vspace{0.5cm}
 
 \small Gustavo Deco\\
+\vspace{0.5cm}
+
+\normalsize John Cunningham\\
 \end{center}
 \end{column}
 \begin{column}{0.5\textwidth}
