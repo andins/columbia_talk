@@ -303,8 +303,12 @@ Estimation of parameters in the MOU model
 \transdissolve
 \frametitle{Bayesian estimation of parameters}
 \begin{itemize}
-	\item Bayesian MAP estimate with uniform prior ($\equiv$ MLE): Tizio et al. 2017
-	\item $C^* = logm[(\mathbf{Q^{0}})^{-1}\mathbf{Q^1}]
+	\item MAP estimate with uniform prior ($\equiv$ MLE): Tizio et al. 2017
+	\item $x(t')|x(t) \sim \mathcal{N}(x(t)expm(-\lambda (t'-t)), \frac{\sigma^2}{2\lambda}(1-expm(-2\lambda (t'-t)))$
+	\item $x(t) \sim \mathcal{N}(0, \frac{\sigma^2}{2\lambda})$
+	\item $P(X|\lambda, \sigma^2) = \prod_n^{N-1} P(x_{n+1}|x_n, \lambda, \sigma^2)P(x_n|\lambda, \sigma^2)$
+	\item $P(\lambda, \sigma^2|X) = \frac{P(X|\lambda, \sigma^2) P(\lambda, \sigma)}{P(X)}$
+	\item $C^* = logm[(\mathbf{Q^{0}})^{-1}\mathbf{Q^1}] $
 \end{itemize}
 \end{frame}
 
