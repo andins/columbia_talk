@@ -13,7 +13,7 @@
   \usecolortheme{default}
 }
 \titlegraphic{\includegraphics[width=0.3\textwidth]{LogoUPF_CBC}\hspace{0.5cm}\includegraphics[width=0.3\textwidth]{logo_italian_academy}\hspace{0.5cm}\includegraphics[width=0.15\textwidth]{columbia}}
-\title[Effective connectivity]{\textbf{Whole brain effective connectivity from fMRI data}\\ Some subtitle}
+\title[Effective connectivity]{\textbf{Whole brain effective connectivity from fMRI data}}
 \author{Andrea Insabato}
 \date{November 27th, 2017}
 
@@ -30,16 +30,13 @@
 \begin{columns}
 \begin{column}{0.5\textwidth}
 	\begin{itemize}
-			\pause
 		\item Whole brain is divided in ROIs (parcellation)
-			\pause
 		\item Average activity in each ROI
-			\pause
 		\item Connectivity between ROIs
 	\end{itemize}
 \end{column}
 \begin{column}{0.5\textwidth}
-\includegraphics<1->[width=0.5\columnwidth,valign=t]{brain_connectivity}
+\includegraphics[width=0.5\columnwidth]{parcellation}
 \end{column}
 \end{columns}
 \end{frame}
@@ -49,7 +46,7 @@
 \frametitle{Functional Connectivity (FC)}
 \begin{columns}
 \begin{column}{0.5\textwidth}
-\includegraphics<1->[width=0.5\columnwidth,valign=t]{FC}
+\includegraphics<1->[width=0.7\columnwidth]{FC}
 \end{column}
 \begin{column}{0.5\textwidth}
 	\begin{itemize}
@@ -69,7 +66,7 @@
 \frametitle{Effective Connectivity (EC)}
 \begin{columns}
 \begin{column}{0.5\textwidth}
-\includegraphics<1->[width=0.5\columnwidth,valign=t]{EC}
+\includegraphics<1->[width=0.8\columnwidth]{net}
 \end{column}
 \begin{column}{0.5\textwidth}
 	\begin{itemize}
@@ -78,7 +75,7 @@
 			\pause
 		\item Sparse 
 			\pause
-		\item Asymmetric: no directionality of interactions 
+		\item Asymmetric: directionality of interactions 
 	\end{itemize}
 \end{column}
 \end{columns}
@@ -105,8 +102,17 @@
 	\item Each node is an Ornstein-Uhlenbeck process 
 		\pause
 	\item $dx_i(t) = [-\frac{x_i(t)}{\tau_i} + \sum_{j\ne i} C_{ij} x_j + \eta_i]dt + dB_i;\qquad dB_i\sim\mathcal{N}(0,\sigma_i^2)$ 
-		\pause
 \end{itemize}
+\begin{center}
+\includegraphics<1->[width=0.5\columnwidth]{net}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\begin{center}
+{Estimation of parameters postponed\ldots}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -128,7 +134,7 @@
 	}
 \end{itemize}
 \begin{center}
-	\visible<8->{\includegraphics[width=0.5\columnwidth,valign=b]{subj_cond_idea}}
+	\visible<8->{\includegraphics[width=0.5\columnwidth]{subj_cond_idea}}
 \end{center}
 \end{frame}
 
@@ -179,7 +185,7 @@ Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movi
 \transdissolve
 \frametitle{Multinomial Logistic Regression (MLR)}
 \begin{itemize}
-	\item $C_k = \sigma(\sum_j^N \beta_{jk} x_j)$
+	\item $C_k = softmax(\sum_j^N \beta_{jk} x_j)$
 \pause
 \item allows to estimate the most relevant features for the classification
 	\item Recursive feature elimination: 
@@ -193,7 +199,7 @@ Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movi
 \begin{frame}
 \frametitle{Subjects classification}
 \begin{center}
-\includegraphics[width=0.9\columnwidth,valign=b]{class_subj}
+\includegraphics[width=0.95\columnwidth]{class_subj}
 \end{center}
 \end{frame}
 
@@ -201,22 +207,22 @@ Dataset C	& Gilson et al. 2017, Mantini et al. 2012	 & 19			 & 3 resting; 2 movi
 \frametitle{Subjects classification}
 Classification accuracy using subsets of links according to RFE ranking
 \begin{center}
-\includegraphics[width=0.8\columnwidth,valign=b]{subj_varying_links}
+\includegraphics[width=0.8\columnwidth]{subj_varying_links}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Subjects classification}
 \begin{center}
-\includegraphics[width=0.8\columnwidth,valign=b]{subj_net}
+\includegraphics[width=0.9\columnwidth]{subj_net}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Subjects classification}
-Average ranking by subsystem
+Average RFE ranking by subsystem
 \begin{center}
-\includegraphics[width=0.8\columnwidth,valign=b]{avg_ranking_subsystems}
+\includegraphics[width=0.9\columnwidth]{avg_ranking_subsystems}
 \end{center}
 \end{frame}
 
@@ -224,25 +230,24 @@ Average ranking by subsystem
 \frametitle{Subjects classification}
 Number of overlapping links is much higher than expected by chance
 \begin{center}
-\includegraphics[width=0.5\columnwidth,valign=b]{subj_H0}
+\includegraphics[width=0.5\columnwidth]{subj_H0}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Condition classification}
-resting VS movie viewing
-
+Dataset C: resting $\Leftrightarrow$ movie viewing\\[0.4cm]
 \pause
 Classification accuracy using subsets of links according to RFE ranking
 \begin{center}
-\includegraphics[width=0.8\columnwidth,valign=b]{subj_cond_results}
+\includegraphics[width=0.8\columnwidth]{subj_cond_results}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Condition classification}
 \begin{center}
-\includegraphics[width=0.65\columnwidth,valign=b]{subj_cond_matrix}
+\includegraphics[width=0.65\columnwidth]{subj_cond_matrix}
 \end{center}
 \end{frame}
 
@@ -250,7 +255,7 @@ Classification accuracy using subsets of links according to RFE ranking
 \frametitle{Condition classification}
 Number of overlapping links is similar to that expected by chance
 \begin{center}
-\includegraphics[width=0.5\columnwidth,valign=b]{cond_H0}
+\includegraphics[width=0.5\columnwidth]{cond_H0}
 \end{center}
 \end{frame}
 
@@ -258,32 +263,46 @@ Number of overlapping links is similar to that expected by chance
 \frametitle{Condition classification}
 Subjects and conditions networks
 \begin{center}
-\includegraphics[width=0.7\columnwidth,valign=b]{fig5}
+\includegraphics[width=0.7\columnwidth]{fig5}
 \end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Summary (ad interim)}
 	\begin{itemize}
-		\item 
+		\item MOU model estimates whole brain connectivity
+		\item Classification of subjects identity based on estimated connectivity achieves very high accuracy with few recording sessions per subject
+		\item Effective connectivity is more reliable than correlation-based functional connectivity
+		\item Classification of behavioral conditions and subjects identity on the same dataset achieves very high accuracy
+		\item Subjects and condition specific networks show very different properties
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{}
-\centering
-Estimation of parameters in the MOU model
+\begin{center}
+\huge{Estimation of parameters in the MOU model}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \transdissolve
 \frametitle{Estimation of parameters}
+\begin{columns}
+\begin{column}{0.5\textwidth}
 \begin{itemize}
+	\item $dx_i(t) = [-\frac{x_i(t)}{\tau_i} + \sum_{j\ne i} C_{ij} x_j]dt + dB_i$
+		\pause
 	\item Lyapunov optimization (Gilson et al. PLoS Comp Biol 2015)
-	\item minimize $V = \sum_{m,n} (\mathbf{Q}_{mn}^0 - \mathbf{\hat{Q}}_{mn}^0)^2 +
-		\sum_{m,n} (\mathbf{Q}_{mn}^{\tau} - \mathbf{\hat{Q}}_{mn}^{\tau})^2$
+	\item minimize $V = \sum_{m,n} (\mathbf{Q}_{mn}^0 - \mathbf{\hat{Q}}_{mn}^0)^2 + \sum_{m,n} (\mathbf{Q}_{mn}^{\tau} - \mathbf{\hat{Q}}_{mn}^{\tau})^2$
 \end{itemize}
-		\colortext{red}{Instert fig 2E matt paper}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{center}
+	\visible<2>{\includegraphics[width=0.8\columnwidth]{matt_fig.pdf}}
+	\end{center}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -301,49 +320,78 @@ Estimation of parameters in the MOU model
 
 \begin{frame}
 \transdissolve
-\frametitle{Bayesian estimation of parameters}
-\begin{itemize}
-	\item MAP estimate with uniform prior ($\equiv$ MLE): Tizio et al. 2017
-	\item $x(t')|x(t) \sim \mathcal{N}(x(t)expm(-\lambda (t'-t)), \frac{\sigma^2}{2\lambda}(1-expm(-2\lambda (t'-t)))$
-	\item $x(t) \sim \mathcal{N}(0, \frac{\sigma^2}{2\lambda})$
-	\item $P(X|\lambda, \sigma^2) = \prod_n^{N-1} P(x_{n+1}|x_n, \lambda, \sigma^2)P(x_n|\lambda, \sigma^2)$
-	\item $P(\lambda, \sigma^2|X) = \frac{P(X|\lambda, \sigma^2) P(\lambda, \sigma)}{P(X)}$
-	\item $C^* = logm[(\mathbf{Q^{0}})^{-1}\mathbf{Q^1}] $
-\end{itemize}
+\frametitle{MAP estimate with uniform prior}
+Singh et al. arXiv 2017
+\pause
+		\begin{equation*}
+x(t')|x(t) \sim \mathcal{N}(x(t)expm(-\boldsymbol\lambda \Delta t), \mathbf{Q}^0-expm(-\boldsymbol\lambda \Delta t) 
+\mathbf{Q}^0 expm(-\boldsymbol\lambda \Delta t)^T)\\[0.3cm]
+ \pause
+ \boldsymbol\lambda_{ij} = \delta_{ij} / \tau_i + C_{ij} \mathrm{;} \qquad \Delta t = t'-t\\[0.3cm]
+ \pause
+ x(t) \sim \mathcal{N}(0, \mathbf{Q}^0)\\[0.3cm]
+ \pause
+ P(X\mid\boldsymbol\lambda, \mathbf{Q}^0) = \prod_n^{N-1} P(x_{n+1}|x_n, \boldsymbol\lambda, \mathbf{Q}^0)P(x_n|\boldsymbol\lambda, \mathbf{Q}^0)\\[0.3cm]
+ \pause
+ P(\boldsymbol\lambda, \mathbf{Q}^0 | X) = \frac{P(X|\boldsymbol\lambda, \mathbf{Q}^0) P(\boldsymbol\lambda, \mathbf{Q}^0)}{P(X)}\\[0.3cm]
+ \pause
+ \boldsymbol\lambda^* = -logm(\sum_{n=1}^{N-1} x_{n+1}x_n^T (\sum_{n=1}^{N-1} x_n x_n^T)^{-1})/\Delta t \\[0.3cm]
+ \pause
+ C_{ij}^* = \boldsymbol\lambda_{ij}^* \qquad  \mathrm{for}\, i\ne j
+		\end{equation*}
 \end{frame}
+
+%\begin{frame}
+%\frametitle{MAP estimate for large scale networks}
+%\begin{center}
+%\includegraphics[width=0.7\columnwidth,valign=b]{}
+%\end{center}
+%\end{frame}
 
 \begin{frame}
-\frametitle{MAP estimate for large scale networks}
-\begin{center}
-\includegraphics[width=0.7\columnwidth,valign=b]{}
-\end{center}
+	\frametitle{Synthetic data}
+	\begin{itemize}
+		\item Simulated data from MOU 
+		\item N=50 nodes
+		\item Connection probability: 0.2
+		\item Uniform distribution of weights
+	\end{itemize}
 \end{frame}
-
+	
 \begin{frame}
 \frametitle{MAP estimate for small time samples}
 \begin{center}
-\includegraphics[width=0.7\columnwidth,valign=b]{}
+\only<1>{\includegraphics[width=0.65\columnwidth]{similarity_varyingT1}}
+\only<2>{\includegraphics[width=0.65\columnwidth]{similarity_varyingT2}}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Influence of weight values}
 \begin{center}
-\includegraphics[width=0.7\columnwidth,valign=b]{}
+\includegraphics[width=0.9\columnwidth]{similarity_varyingConnStren}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{True and predicted weights}
 \begin{center}
-\includegraphics[width=0.7\columnwidth,valign=b]{}
+	\includegraphics[width=0.99\columnwidth]{scatter_MAP_T1600}
 \end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Summary}
+\frametitle{MAP estimate for small time samples}
+\begin{center}
+\includegraphics[width=0.65\columnwidth]{similarity_varyingT3}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Next steps}
 	\begin{itemize}
-		\item 
+		\item Sparse network prior
+		\item \ldots?
 	\end{itemize}
 \end{frame}
 
@@ -370,7 +418,7 @@ Estimation of parameters in the MOU model
 \small Gustavo Deco\\
 \vspace{0.5cm}
 
-\normalsize John Cunningham\\
+\normalsize \alert<2>{John Cunningham}\\
 \end{center}
 \end{column}
 \begin{column}{0.5\textwidth}
